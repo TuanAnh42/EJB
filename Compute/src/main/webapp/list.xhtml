@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+   <head>
+
+      <title>List</title>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+   </head>
+
+   <body>
+
+   <div class="container">
+      <h1>Students list</h1>
+
+      <a href="add.xhtml" class="badge badge-primary p-2 m-3">Add new student</a>
+
+
+      <h:dataTable var="item" value="#{studentBean.studentList}" styleClass="table table-bordered">
+         <h:column>
+            <f:facet name="header">RollNumber</f:facet>
+            #{item.rollnumber}
+         </h:column>
+         <h:column>
+            <f:facet name="header">Student Name</f:facet>
+            #{item.name}
+         </h:column>
+         <h:column>
+            <f:facet name="header">Age</f:facet>
+            #{item.age}
+         </h:column>
+         <h:column>
+            <f:facet name="header">EMail </f:facet>
+            #{item.email}
+         </h:column>
+         <h:column>
+            <f:facet name="header">Action </f:facet>
+
+            <h:link outcome="edit" value="Edit">
+               <f:param value="#{item.rollnumber}" name="id"/>
+            </h:link>
+
+            <h:form>
+               <h:commandButton value="Delete" action="#{studentBean.deleteStudent(item.rollnumber)}"/>
+            </h:form>
+
+         </h:column>
+
+      </h:dataTable>
+
+   </div>
+
+   </body>
+</html>
